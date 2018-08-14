@@ -1,9 +1,9 @@
 
-libcrypto
+Ezcrypto.js
 =========
 
 A small vendoring wrapper for [sjcl](http://bitwiseshiftleft.github.io/sjcl/) with support for
-hashes and encodings required by the Steem platform.
+hashes and encodings required by the Ezira.io platform.
 
 ## Usage
 
@@ -12,56 +12,56 @@ is excluded from your builds.
 
 Otherwise, just
 ```sh
-$ yarn install steem-crypto
+$ yarn install ezcrypto.js
 ```
 
 ## API
 
 ```
-> crypto = require('@steemit/libcrypto');
+> ezcrypto = require('ezcrypto.js');
 ```
 
-### crypto.sha256(data)
+### ezcrypto.sha256(data)
 
 Hashes the content of an `ArrayBuffer` using SHA-256.
 
 ```
-> shaHash = crypto.sha256(new Uint8Array().buffer)
+> shaHash = ezcrypto.sha256(new Uint8Array().buffer)
 ArrayBuffer { byteLength: 32 }
-> crypto.hexify(shaHash)
+> ezcrypto.hexify(shaHash)
 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
 ```
 
-### crypto.ripemd160(data) 
+### ezcrypto.ripemd160(data) 
 
 Hashes the content of an `ArrayBuffer` using RIPEMD-160.
 
 ```
-> ripemdHash = crypto.ripemd160(new Uint8Array().buffer)
-ArrayBuffer { byteLength: 20 }
-> crypto.hexify(ripemdHash)
+> ripemdHash = ezcrypto.ripemd160(new Uint8Array().buffer)
+ArrayBuffer { byteLength: 20 }e
+> ezcrypto.hexify(ripemdHash)
 '9c1185a5c5e9fc54612808977ee8f548b2258d31'
 ```
 
-### crypto.PrivateKey
+### ezcrypto.PrivateKey
 
-Provides operations over Steemit secp256k1-based ECC private keys.
+Provides operations over Ezira secp256k1-based ECC private keys.
 ```
-> secretKey = crypto.PrivateKey.from('5JCDRqLdyX4W7tscyzyxav8EaqABSVAWLvfi7rdqMKJneqqwQGt')
+> secretKey = ezcrypto.PrivateKey.from('5JCDRqLdyX4W7tscyzyxav8EaqABSVAWLvfi7rdqMKJneqqwQGt')
 PrivateKey { getPublicKey: [Function], sign: [Function] }
 > secretKey.getPublicKey().toString()
-'STM5pZ15FDVAvNKW3saTJchWmSSmYtEvA6aKiXwDtCq2JRZV9KtR9'
+'EZT5pZ15FDVAvNKW3saTJchWmSSmYtEvA6aKiXwDtCq2JRZV9KtR9'
 > secretSig = secretKey.sign(new Uint8Array(32).buffer)
 ArrayBuffer { byteLength: 65 }
-> crypto.hexify(secretSig)
+> ezcrypto.hexify(secretSig)
 '20387d5f9ae215a64065fde2a9d4f7be83d3480b7cc89f7c01488042da348845408909e9d4f1d66466c53f0007c771a73bf2883d8d5ab4735b5b4316091361442c'
 ```
 
-### crypto.PublicKey
+### ezcrypto.PublicKey
 
-Provides operations over Steemit secp256k1-based ECC public keys.
+Provides operations over Ezira secp256k1-based ECC public keys.
 ```
-> publicKey = crypto.PublicKey.from('STM5SKxjN1YdrFLgoPcp9KteUmNVdgE8DpTPC9sF6jbjVqP9d2Utq')
+> publicKey = ezcrypto.PublicKey.from('EZT5SKxjN1YdrFLgoPcp9KteUmNVdgE8DpTPC9sF6jbjVqP9d2Utq')
 ... 
 > publicKey.verify(new Uint8Array(32).buffer, secretSig)
 true
@@ -69,52 +69,52 @@ true
 ...
 ```
 
-### crypto.generateKeys()
+### ezcrypto.generateKeys()
 
-Generates a new pair of keys in Steem WIF format using cryptographically secure
+Generates a new pair of keys in Ezira WIF format using cryptographically secure
 random number generation.
 ```
-> crypto.generateKeys()
+> ezcrypto.generateKeys()
 {
   private: "5JCDRqLdyX4W7tscyzyxav8EaqABSVAWLvfi7rdqMKJneqqwQGt",
-  public: "STM5pZ15FDVAvNKW3saTJchWmSSmYtEvA6aKiXwDtCq2JRZV9KtR9"
+  public: "EZT5pZ15FDVAvNKW3saTJchWmSSmYtEvA6aKiXwDtCq2JRZV9KtR9"
 }
 ```
 
-### crypto.keysFromPassword(accountName, accountPassword)
+### ezcrypto.keysFromPassword(accountName, accountPassword)
 
-Given a Steemit account name and password, regenerates the derived `owner`, `posting`,
+Given an account name and password, regenerates the derived `owner`, `posting`,
 `active`, and `memo` keys.
 ```
-> crypto.keysFromPassword('username', 'password')
+> ezcrypto.keysFromPassword('username', 'password')
 { owner:
    { private: '5JCDRqLdyX4W7tscyzyxav8EaqABSVAWLvfi7rdqMKJneqqwQGt',
-     public: 'STM5pZ15FDVAvNKW3saTJchWmSSmYtEvA6aKiXwDtCq2JRZV9KtR9' },
+     public: 'EZT5pZ15FDVAvNKW3saTJchWmSSmYtEvA6aKiXwDtCq2JRZV9KtR9' },
   memo:
    { private: '5JSmQQJXH5ZrSW3KJSTUPFJy7SuLeDiY3bW6vB1McamxzJQFhwD',
-     public: 'STM5nwJgD9jmkAdTXuiz3jqrkw3om95gCapZo4e4Bcp3qzyiedwCn' },
+     public: 'EZT5nwJgD9jmkAdTXuiz3jqrkw3om95gCapZo4e4Bcp3qzyiedwCn' },
   posting:
    { private: '5HsoxWiHRRyx6oSxKj32HDqDMzSGhs79zLZopDc7nMcjMbcPp5E',
-     public: 'STM6gZmazY23TEMkxmPpnmvbAgWFAzwtaSDbhSUdmpTXzoJJLPFH4' },
+     public: 'EZT6gZmazY23TEMkxmPpnmvbAgWFAzwtaSDbhSUdmpTXzoJJLPFH4' },
   active:
    { private: '5JamTPvZyQsHf8c2pbN92F1gUY3sJkpW3ZJFzdmfbAJPAXT5aw3',
-     public: 'STM5SKxjN1YdrFLgoPcp9KteUmNVdgE8DpTPC9sF6jbjVqP9d2Utq' } }
+     public: 'EZT5SKxjN1YdrFLgoPcp9KteUmNVdgE8DpTPC9sF6jbjVqP9d2Utq' } }
 ```
 
 ## Requirements
 
-steem-crypto is written in Javascript as specified by 
+ezcrypto is written in Javascript as specified by 
 [ECMA-262, version 5.1](https://www.ecma-international.org/ecma-262/5.1/).
 Other than its vendored copy of sjcl, it has no dependencies and never will.
 
-steem-crypto explicitly supports the following environments without polyfills:
+ezcrypto explicitly supports the following environments without polyfills:
 - [Node.js](https://nodejs.com) versions 4 and up
 - Microsoft Edge (all versions)
 - Safari for macOS versions 7.1+
 - Safari for iOS versions 8+
 - Firefox, Chrome, and Opera versions 30+
 
-steem-crypto explicitly does not support the following environments:
+ezcrypto explicitly does not support the following environments:
 - Opera Mini
 - Android Browser (i.e., the non-Chromium versions)
 - Microsoft Internet Explorer versions <10

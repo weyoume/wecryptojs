@@ -3,8 +3,8 @@
     /* global require */
     factory(exports);
   } else {
-    root.steemit = root.steemit || {};
-    factory((root.steemit.sjcl = {}));
+    root.eznode = root.eznode || {};
+    factory((root.eznode.sjcl = {}));
   }
 })(this, function(exports) {
 
