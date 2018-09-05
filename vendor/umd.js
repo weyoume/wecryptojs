@@ -3,8 +3,8 @@
     /* global require */
     factory(exports);
   } else {
-    root.eznode = root.eznode || {};
-    factory((root.eznode.sjcl = {}));
+    root.node = root.node || {};
+    factory((root.node.sjcl = {}));
   }
 })(this, function(exports) {
 

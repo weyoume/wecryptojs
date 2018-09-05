@@ -14,7 +14,7 @@
   defaults: { v:1, iter:10000, ks:128, ts:64, mode:"ccm", adata:"", cipher:"aes" },
 
   /** Simple encryption function.
-   * @param {String|bitArray} password The password or key.
+   * @param {String|bitArray} password The password.
    * @param {String} plaintext The data to encrypt.
    * @param {Object} [params] The parameters including tag, iv and salt.
    * @param {Object} [rp] A returned version with filled-in parameters.
@@ -78,7 +78,7 @@
   },
 
   /** Simple encryption function.
-   * @param {String|bitArray} password The password or key.
+   * @param {String|bitArray} password The password.
    * @param {String} plaintext The data to encrypt.
    * @param {Object} [params] The parameters including tag, iv and salt.
    * @param {Object} [rp] A returned version with filled-in parameters.
@@ -91,7 +91,7 @@
   },
 
   /** Simple decryption function.
-   * @param {String|bitArray} password The password or key.
+   * @param {String|bitArray} password The password.
    * @param {Object} ciphertext The cipher raw data to decrypt.
    * @param {Object} [params] Additional non-default parameters.
    * @param {Object} [rp] A returned object with filled parameters.
@@ -152,7 +152,7 @@
   },
 
   /** Simple decryption function.
-   * @param {String|bitArray} password The password or key.
+   * @param {String|bitArray} password The password.
    * @param {String} ciphertext The ciphertext to decrypt.
    * @param {Object} [params] Additional non-default parameters.
    * @param {Object} [rp] A returned object with filled parameters.
@@ -282,7 +282,7 @@
 };
 
 /** Simple encryption function; convenient shorthand for sjcl.json.encrypt.
- * @param {String|bitArray} password The password or key.
+ * @param {String|bitArray} password The password.
  * @param {String} plaintext The data to encrypt.
  * @param {Object} [params] The parameters including tag, iv and salt.
  * @param {Object} [rp] A returned version with filled-in parameters.
@@ -291,7 +291,7 @@
 sjcl.encrypt = sjcl.json.encrypt;
 
 /** Simple decryption function; convenient shorthand for sjcl.json.decrypt.
- * @param {String|bitArray} password The password or key.
+ * @param {String|bitArray} password The password.
  * @param {String} ciphertext The ciphertext to decrypt.
  * @param {Object} [params] Additional non-default parameters.
  * @param {Object} [rp] A returned object with filled parameters.

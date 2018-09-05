@@ -5,8 +5,8 @@
     factory(exports);
   } else {
     // Browser globals
-    root.eznode = root.eznode || {};
-    factory((root.eznode.crypto = {}));
+    root.node = root.node || {};
+    factory((root.node.crypto = {}));
   }
 })(typeof self !== 'undefined' ? self : this, function(exports) {
   exports.PrivateKey = PrivateKey;
@@ -42,13 +42,13 @@
     };
 
     this.sign = function(hash) {
-      return fromBits(sjcl.codec.eznode.signRecoverably(priv, toBits(hash)));
+      return fromBits(sjcl.codec.node.signRecoverably(priv, toBits(hash)));
     };
   }
 
   PrivateKey.from = function(wif, header) {
     return new PrivateKey(
-      sjcl.codec.eznode.deserializePrivateKey(wif, header)
+      sjcl.codec.node.deserializePrivateKey(wif, header)
     );
   };
 
@@ -57,18 +57,18 @@
   }
 
   PublicKey.from = function(str) {
-    return new PublicKey(sjcl.codec.eznode.deserializePublicKey(str));
+    return new PublicKey(sjcl.codec.node.deserializePublicKey(str));
   };
 
   PublicKey.recover = function(hash, sig) {
     return new PublicKey(
-      sjcl.codec.eznode.recoverPublicKey(toBits(hash), toBits(sig))
+      sjcl.codec.node.recoverPublicKey(toBits(hash), toBits(sig))
     );
   };
 
   PublicKey.prototype = {
     toString: function() {
-      return sjcl.codec.eznode.serializePublicKey(this._p);
+      return sjcl.codec.node.serializePublicKey(this._p);
     },
     verify: function(hash, signature) {
       try {
@@ -87,7 +87,7 @@
   }
 
   function keysFromPassword(accountName, accountPassword) {
-    var keys = sjcl.codec.eznode.keysFromPassword(
+    var keys = sjcl.codec.node.keysFromPassword(
       accountName,
       accountPassword
     );
@@ -121,8 +121,8 @@
 
   function serializePair(k) {
     return {
-      private: sjcl.codec.eznode.serializePrivateKey(k.sec),
-      public: sjcl.codec.eznode.serializePublicKey(k.pub)
+      private: sjcl.codec.node.serializePrivateKey(k.sec),
+      public: sjcl.codec.node.serializePublicKey(k.pub)
     };
   }
 

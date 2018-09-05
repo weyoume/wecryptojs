@@ -18,7 +18,7 @@ exports.sjclFileList = [
   // our additions
   './src/codecBase58.js',
   './src/codecBase58Check.js',
-  './src/codecEzira.js'
+  './src/codecProtocolSpecific.js'
 ];
 
 // these files are necessary to run the tests, though we don't include them
@@ -31,8 +31,8 @@ exports.sjclTestFileList = [
   exports.sjclPrefix + 'util.js',
   exports.sjclPrefix + 'test.js',
   // our tests
-  './test/sjcl/codecEzira.vector.test.js',
+  './test/sjcl/codecProtocolSpecific.vector.test.js',
   './test/sjcl/codecBase58.test.js',
   './test/sjcl/codecBase58Check.test.js',
-  './test/sjcl/codecEzira.test.js'
+  './test/sjcl/codecProtocolSpecific.test.js'
 ];

@@ -23,7 +23,7 @@ while (fixtures.length < 2) {
 
 /* eslint-disable no-console */
 console.log(
-  'sjcl.test.vector.ezsig = ' +
+  'sjcl.test.vector.ProtocolSpecific = ' +
     JSON.stringify(fixtures, undefined, 2) +
     ';'
 );
@@ -31,8 +31,8 @@ console.log(
 
 function generateFixture(keys) {
   var fixture = {
-    secretKey: sjcl.codec.eznode.serializeSecretKey(keys.sec),
-    publicKey: sjcl.codec.eznode.serializePublicKey(keys.pub),
+    secretKey: sjcl.codec.node.serializeSecretKey(keys.sec),
+    publicKey: sjcl.codec.node.serializePublicKey(keys.pub),
     signatures: []
   };
 
